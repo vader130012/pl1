@@ -4,9 +4,8 @@
                then modify the lat and lng and zoom to point to a place you know  -->
 <html>
   <head>
-    <title>Story of One Direction(Band)</title>
+    <title>Simple Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -22,10 +21,19 @@
           padding: 0;
         }
     </style>
- <script src="index.js"></script>  
+    <script>
+      let map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 30.3167, lng: 78.0351 },
+          zoom: 12,
+        });
+      }
+    </script>
   </head>
   <body>
-    <div id="marker"></div>
+    <div id="map"></div>
     
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!-- *** STUDENTS: Replace YOUR_API_KEY text with provided key in class for property src in next line *** -->
