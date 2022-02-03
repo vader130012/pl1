@@ -22,19 +22,14 @@
         }
     </style>
     <script>
-      let map;
+     let map;
 
       function initMap() {
-        const myLatLang ={lat: 51.695610503915795, lng: -0.2370046449897051};
         map = new google.maps.Map(document.getElementById("map"), {
-          center: myLatLng, 
+          center: { lat: 51.695610503915795, lng: -0.2370046449897051 },
           zoom: 4,
         });
-        new google.maps.Marker({
-          position: myLatLng,
-          map, title: "1D"
-        });
-        marker.setMap(map);
+      }
         
     </script>
   </head>
