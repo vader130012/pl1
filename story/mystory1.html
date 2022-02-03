@@ -4,59 +4,49 @@
                then modify the lat and lng and zoom to point to a place you know  -->
 <html>
   <head>
-    <title>One Direction (Music Band) </title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Load Maps API dynamically</title>
+    
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-          height: 100%;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
+      html, body, #maps {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
     </style>
-   <script>
+    
+    <script>
 
-var LocationsForMap = [
-        ['Delhi',28.704060, 77.102493],
-          ['Jaipur',26.9124, 75.7873],
-      ['London', 51.507351, -0.127758],
-      ['Washington', 47.751076,-120.740135]
-    ];
+    var map;
+  var london = {lat: 51.5074, lng: 0.1278};
+    function myMap() {
+        var c = new google.maps.LatLng(51.8867537,-0.557352);
+        var mapProp= {
+            zoom:7,
+            center: c
+        };
+      
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 2,
-      center: new google.maps.LatLng(28.704, 77.25),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
 
-    var infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById('maps'), mapProp);
+        // The location of location
+  var marker = new google.maps.Marker({position: london, map: map});
+      
+            var infowindow = new google.maps.InfoWindow({
+    content: "Hello Text"
+});
 
-    var marker, i;
-
-    for (i = 0; i < LocationsForMap.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(LocationsForMap[i][1], LocationsForMap[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(LocationsForMap[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
+google.maps.event.addListener(marker, 'click', (function () {
+   
+    infowindow.open(map, marker);
+}));
     }
-</script>
+     
+    </script>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="maps"></div>
     <!-- *** STUDENTS: Replace YOUR_API_KEY text with provided key in class for property src in next line *** -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv3MGflguusDaLmV_-BUlmuoUI4EbM88w&callback=initMap&v=weekly" async>
     </script>
